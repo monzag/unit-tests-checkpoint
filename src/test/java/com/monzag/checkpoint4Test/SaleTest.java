@@ -38,7 +38,34 @@ class SaleTest {
     @Test
     public void testGetNetValue() {
         BigDecimal expected = new BigDecimal(25.55);
+        expected = expected.setScale(2, BigDecimal.ROUND_DOWN);
         BigDecimal actual = sale.getNetValue();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetEmptyProductName() {
+        String actual = "";
+        assertThrows(IllegalArgumentException.class, () -> sale.setProductName(actual));
+    }
+
+    @Test
+    public void testSetTaxRateNotLikePercent() {
+        Integer actual = 101;
+        assertThrows(IllegalArgumentException.class, () -> sale.setTaxRate(actual));
+    }
+
+    @Test
+    public void testSetNetValueWithScaleMoreThan2() {
+        String actual = "20.333";
+        assertThrows(IllegalArgumentException.class, () -> sale.setNetValue(actual));
+    }
+
+    @Test
+    public void testGetGrossValue() {
+        BigDecimal expected = new BigDecimal(31.43);
+        expected = expected.setScale(2, BigDecimal.ROUND_CEILING);
+        BigDecimal actual = sale.getGrossValue();
         assertEquals(expected, actual);
     }
 
