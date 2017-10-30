@@ -11,9 +11,9 @@ public class Sale {
     public Sale() {
     }
 
-    public Sale(String productName, BigDecimal netValue, Integer taxRate) {
+    public Sale(String productName, String netValueSt, Integer taxRate) {
         setProductName(productName);
-        setNetValue(netValue);
+        setNetValue(netValueSt);
         setTaxRate(taxRate);
     }
 
@@ -32,7 +32,8 @@ public class Sale {
         return netValue;
     }
 
-    public void setNetValue(BigDecimal netValue) throws IllegalArgumentException {
+    public void setNetValue(String netValueSt) throws IllegalArgumentException {
+        BigDecimal netValue = new BigDecimal(netValueSt);
         if (netValue.scale() > 2) {
             throw new IllegalArgumentException();
         }
