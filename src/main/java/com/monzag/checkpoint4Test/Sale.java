@@ -49,4 +49,11 @@ public class Sale {
         }
         this.taxRate = taxRate;
     }
+
+    public BigDecimal getGrossValue() {
+        BigDecimal taxPrice = netValue.multiply(new BigDecimal(taxRate)).divide(new BigDecimal(100));
+        BigDecimal grossValue = netValue.add(taxPrice);
+
+        return grossValue;
+    }
 }
