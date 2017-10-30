@@ -55,6 +55,6 @@ public class Sale {
         BigDecimal taxPrice = netValue.multiply(new BigDecimal(taxRate)).divide(new BigDecimal(100));
         BigDecimal grossValue = netValue.add(taxPrice);
 
-        return grossValue;
+        return grossValue.setScale(2, BigDecimal.ROUND_CEILING);
     }
 }
