@@ -1,6 +1,8 @@
 package com.monzag.checkpoint4Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+
 
 public class Customer {
 
@@ -48,7 +50,10 @@ public class Customer {
     }
 
     public void setBirthyear(Integer birthyear) throws IllegalArgumentException {
-        if (birthyear < 1900 || birthyear > 2017) {
+        LocalDate currentDate = LocalDate.now();
+        Integer year = currentDate.getYear();
+
+        if (birthyear < 1900 || birthyear > year) {
             throw new IllegalArgumentException();
         }
         this.birthyear = birthyear;
@@ -75,7 +80,10 @@ public class Customer {
     }
 
     public Integer getAge() {
-        return 2017 - this.birthyear;
+        LocalDate currentDate = LocalDate.now();
+        Integer year = currentDate.getYear();
+
+        return year - this.birthyear;
     }
 
 }
