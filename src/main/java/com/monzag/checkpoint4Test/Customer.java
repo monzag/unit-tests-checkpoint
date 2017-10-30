@@ -15,9 +15,9 @@ public class Customer {
     }
 
     public Customer(String name, String surname, Integer birthyear, String gender){
-        this.name = name;
-        this.surname = surname;
-        this.birthyear = birthyear;
+        setName(name);
+        setSurname(surname);
+        setBirthyear(birthyear);
         this.gender = gender;
     }
 
@@ -25,7 +25,10 @@ public class Customer {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws IllegalArgumentException {
+        if (name.length() < 1) {
+            throw new IllegalArgumentException();
+        }
         this.name = name;
     }
 
@@ -33,7 +36,10 @@ public class Customer {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public void setSurname(String surname) throws IllegalArgumentException {
+        if (surname.length() < 1) {
+            throw new IllegalArgumentException();
+        }
         this.surname = surname;
     }
 
@@ -41,7 +47,10 @@ public class Customer {
         return birthyear;
     }
 
-    public void setBirthyear(Integer birthyear) {
+    public void setBirthyear(Integer birthyear) throws IllegalArgumentException {
+        if (birthyear < 1900 || birthyear > 2017) {
+            throw new IllegalArgumentException();
+        }
         this.birthyear = birthyear;
     }
 
@@ -49,7 +58,10 @@ public class Customer {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(String gender) throws IllegalArgumentException {
+        if (gender != "Male" || gender != "Female") {
+            throw new IllegalArgumentException();
+        }
         this.gender = gender;
     }
 
@@ -59,6 +71,10 @@ public class Customer {
 
     public void setSales(ArrayList<Sale> sales) {
         this.sales = sales;
+    }
+
+    public Integer getAge() {
+        return 2017 - this.birthyear;
     }
 
 }
