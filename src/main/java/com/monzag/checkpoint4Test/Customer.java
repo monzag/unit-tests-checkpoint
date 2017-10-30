@@ -8,7 +8,7 @@ public class Customer {
     private String surname;
     private Integer birthyear;
     private String gender;
-    private ArrayList<Sale> sales;
+    private ArrayList<Sale> sales = null;
 
     public Customer() {
 
@@ -18,7 +18,7 @@ public class Customer {
         setName(name);
         setSurname(surname);
         setBirthyear(birthyear);
-        this.gender = gender;
+        setGender(gender);
     }
 
     public String getName() {
@@ -59,10 +59,11 @@ public class Customer {
     }
 
     public void setGender(String gender) throws IllegalArgumentException {
-        if (gender != "Male" || gender != "Female") {
+        if (gender.equals("Male") || gender.equals("Female")) {
+            this.gender = gender;
+        } else {
             throw new IllegalArgumentException();
         }
-        this.gender = gender;
     }
 
     public ArrayList<Sale> getSales() {
