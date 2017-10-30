@@ -50,10 +50,7 @@ public class Customer {
     }
 
     public void setBirthyear(Integer birthyear) throws IllegalArgumentException {
-        LocalDate currentDate = LocalDate.now();
-        Integer year = currentDate.getYear();
-
-        if (birthyear < 1900 || birthyear > year) {
+        if (birthyear < 1900 || birthyear > getCurrentYear()) {
             throw new IllegalArgumentException();
         }
         this.birthyear = birthyear;
@@ -80,10 +77,13 @@ public class Customer {
     }
 
     public Integer getAge() {
+        return getCurrentYear() - this.birthyear;
+    }
+
+    public Integer getCurrentYear() {
         LocalDate currentDate = LocalDate.now();
         Integer year = currentDate.getYear();
-
-        return year - this.birthyear;
+        return year;
     }
 
 }
